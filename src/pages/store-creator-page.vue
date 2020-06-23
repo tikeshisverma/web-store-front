@@ -35,16 +35,15 @@ export default {
      storeName:"",
      storeId:"",
      storeCategory:"",
+     userEmail:"",
    }
    },
   components: {
 
   },
-  created() {
-  let a = this.$auth.user
-  console.log("authhhhh=-----????", a)
-  
-  },
+mounted:function(){
+this.userEmail= JSON.parse(localStorage.getItem('user')).email
+},
 
    methods:{
      onclick(){
@@ -53,9 +52,10 @@ export default {
          store_id: this.storeId,
          store_type: this.storeType,
          store_category : this.storeCategory,
-         store_discription: this.storeDiscription
+         store_discription: this.storeDiscription,
+         user_email:this.userEmail
+
        }
-       console.log("data-->",payload)
        this.creatStore(payload)
      },
     creatStore(payload){
@@ -67,10 +67,13 @@ export default {
         body: JSON.stringify(payload),
       })
       .then(res => res.json())
-      .then(res => console.log("dfasdfsdfsdf", res))
-    } 
+      .then(() => {
+        this.$router.push({name:"store", query:{id:"4123"}
+      })
+    } )
    },
    
+}
 };
 </script>
 <style>
