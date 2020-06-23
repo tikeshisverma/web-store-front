@@ -1,5 +1,4 @@
 <template>
-<div>
 
   <div class="wrapper">
       
@@ -22,9 +21,8 @@
    <option>dance</option>
 </select>
 <textarea v-model="storeDiscription" placeholder="store discription"></textarea>
-<button class="click" @click="onclick" >creat store front</button>
+<button class="click" @click="onclick" >Create Store</button>
  </div>
-  </div>
 </template>
 <script>
 
@@ -42,6 +40,12 @@ export default {
   components: {
 
   },
+  created() {
+  let a = this.$auth.user
+  console.log("authhhhh=-----????", a)
+  
+  },
+
    methods:{
      onclick(){
        const payload = {
@@ -73,6 +77,20 @@ export default {
 .wrapper{
   display: flex;
   flex-direction: column;
-  width: 200px;
+    width: 25%;
+    margin: 10rem auto;
+    background: #86b1ff;
+    padding: 10px;
+  
+
+}
+input,select,textarea{
+  box-shadow: inset 0px 0px 3px 2px #919191cc ;
+  border: none;
+  padding: 10px;
+}
+.click{
+  padding: 10px;
+  font-size: 18px;
 }
 </style>

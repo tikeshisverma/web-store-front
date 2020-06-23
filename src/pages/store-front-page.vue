@@ -7,6 +7,7 @@
   category: {{store.category}}
   description: {{store.description}}
   </div>
+  <button @click="logout">logout</button>
   </div>
 </template>
 <script>
@@ -33,10 +34,20 @@ this.getStoreData()
       .then(res=> {
         this.store = res.result[0]
       })
+    },
+    logout(){
+      console.log("hi", this.$auth)
+      if(this.$auth && this.$auth.logout) {
+this.$auth.logout({
+        returnTo: window.location.origin
+      })
+      }
+      
     }
   }
 };
 </script>
+
 <style>
 
 </style>
