@@ -17,7 +17,9 @@ export default {
   methods: {
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$auth.loginWithRedirect({
+        url: 'localhost:8080/storeList'
+      });
     },
     // Log the user out
     logout() {

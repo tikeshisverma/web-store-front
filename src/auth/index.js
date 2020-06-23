@@ -100,7 +100,12 @@ export const useAuth0 = ({
         ) {
           // handle the redirect and retrieve tokens
           const { appState } = await this.auth0Client.handleRedirectCallback();
+        // Initialize our internal authentication state
+        this.isAuthenticated = await this.auth0Client.isAuthenticated();
+        this.user = await this.auth0Client.getUser();
+        console.log('finally user value--->', this.user)
 
+        this.user?localStorage.setItem("user", JSON.stringify(this.user)):null
           // Notify subscribers that the redirect callback has happened, passing the appState
           // (useful for retrieving any pre-authentication state)
           onRedirectCallback(appState);
@@ -108,12 +113,6 @@ export const useAuth0 = ({
       } catch (e) {
         this.error = e;
       } finally {
-        // Initialize our internal authentication state
-        this.isAuthenticated = await this.auth0Client.isAuthenticated();
-        this.user = await this.auth0Client.getUser();
-        console.log('finally user value--->', this.user)
-
-        this.user?localStorage.setItem("user", JSON.stringify(this.user)):null
         this.loading = false;
       }
     }

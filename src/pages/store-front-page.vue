@@ -7,7 +7,8 @@
   category: {{store.category}}
   description: {{store.description}}
   </div>
-  <button @click="logout">logout</button>
+
+  <button @click="logout" v-if="isLoggedin">logout</button>
   </div>
 </template>
 <script>
@@ -16,7 +17,8 @@ export default {
   name: "storeFrontPage",
   data() {
     return {
-      store:{}
+      store:[],
+      isLoggedin: this.$cookies.get('auth0.is.authenticated')
     };
   },
   components: {
@@ -37,12 +39,9 @@ this.getStoreData()
     },
     logout(){
       console.log("hi", this.$auth)
-      if(this.$auth && this.$auth.logout) {
-this.$auth.logout({
-        returnTo: window.location.origin
-      })
-      }
-      
+        this.$cookies.set('auth0.is.authenticated', false)
+        localStorage.removeItem('user')
+        this.isLoggedin = false;
     }
   }
 };
