@@ -23,14 +23,10 @@ export default {
   },
   mounted: async function() {
     try {
-      console.log("localStorage.getItem", localStorage.getItem("user"));
       this.userDetails = JSON.parse(localStorage.getItem("user"));
-      console.log("storeList--->", this.storeList);
-      console.log("userDetails -->", this.userDetails);
       this.storeList = await this.getUserStoreList(this.userDetails.email);
 
       const totalStores = this.storeList.result.length;
-      console.log("storeList --->", this.storeList);
       if (totalStores === 0) {
         this.$router.push({ name: "creator" });
       } else if (totalStores === 1) {
@@ -39,12 +35,10 @@ export default {
       }
     } catch (e) {
       this.$router.push({ name: "login" });
-      console.log("this is the error -->", e);
     }
   },
   methods: {
     getUserStoreList(email) {
-      console.log("email--->", email);
       return fetch(`http://localhost:3000/api/store?email=${email}`).then(res =>
         res.json()
       );
@@ -68,6 +62,13 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   line-height: 0.5em;
+}
+.store-list-page a {
+    text-decoration: none;
+}
+.store-list-page h3 {
+    text-decoration: underline;
+    text-transform: capitalize;
 }
 .store-card:hover {
   box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.1),
