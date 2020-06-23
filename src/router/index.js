@@ -8,9 +8,9 @@ import storeListPage from '../pages/store-list-page.vue'
 import storeFrontPage from '../pages/store-front-page.vue'
 import login from '../pages/login-page.vue'
 const routes = [
-  { path: '/', component: storeCreatorPage, name: 'creator' },
+  { path: '/creator', component: storeCreatorPage, name: 'creator' },
   { path: "/store", component: storeFrontPage, name: "store" },
-  { path: "/login", component: login, name: "login" },
+  { path: "/", component: login, name: "login" },
   { path: "/storelist", component: storeListPage, name: "storelist" },
 
 ]

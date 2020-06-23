@@ -67,8 +67,8 @@ this.userEmail= JSON.parse(localStorage.getItem('user')).email
         body: JSON.stringify(payload),
       })
       .then(res => res.json())
-      .then(() => {
-        this.$router.push({name:"store", query:{id:"4123"}
+      .then((res) => {
+        this.$router.push({name:"store", query:{id:res.id}
       })
     } )
    },
